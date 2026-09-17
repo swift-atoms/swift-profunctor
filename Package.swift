@@ -4,38 +4,38 @@ import CompilerPluginSupport
 import PackageDescription
 
 let package = Package(
-    name: "swift-profunctor-derivation",
+    name: "swift-profunctor",
     products: [
-        .library(name: "Profunctor Derivation", targets: ["Profunctor Derivation"]),
-        .library(name: "Profunctor Derivation Core", targets: ["Profunctor Derivation Core"]),
+        .library(name: "Profunctor Macro", targets: ["Profunctor Macro"]),
+        .library(name: "Profunctor Macro Core", targets: ["Profunctor Macro Core"]),
     ],
     dependencies: [
         .package(url: "https://github.com/swiftlang/swift-syntax.git", "603.0.2"..<"604.0.0")
     ],
     targets: [
         .target(
-            name: "Profunctor Derivation Core",
+            name: "Profunctor Macro Core",
             dependencies: [
                 .product(name: "SwiftSyntax", package: "swift-syntax"),
                 .product(name: "SwiftSyntaxBuilder", package: "swift-syntax"),
             ]
         ),
         .macro(
-            name: "Profunctor Derivation Macros",
+            name: "Profunctor Macro Plugin",
             dependencies: [
-                "Profunctor Derivation Core",
+                "Profunctor Macro Core",
                 .product(name: "SwiftCompilerPlugin", package: "swift-syntax"),
                 .product(name: "SwiftSyntax", package: "swift-syntax"),
                 .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
             ]
         ),
         .target(
-            name: "Profunctor Derivation",
-            dependencies: ["Profunctor Derivation Macros"]
+            name: "Profunctor Macro",
+            dependencies: ["Profunctor Macro Plugin"]
         ),
         .testTarget(
-            name: "Profunctor Derivation Tests",
-            dependencies: ["Profunctor Derivation"]
+            name: "Profunctor Macro Tests",
+            dependencies: ["Profunctor Macro"]
         ),
     ],
     swiftLanguageModes: [.v6]

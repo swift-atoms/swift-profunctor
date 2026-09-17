@@ -1,6 +1,6 @@
 import SwiftSyntax
 import SwiftSyntaxMacros
-import Profunctor_Derivation_Core
+import Profunctor_Macro_Core
 
 public struct Macro: MemberMacro {
     public static func expansion(

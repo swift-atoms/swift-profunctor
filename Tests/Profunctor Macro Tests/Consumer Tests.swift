@@ -1,4 +1,4 @@
-import Profunctor_Derivation
+import Profunctor_Macro
 import Testing
 
 @Profunctor
