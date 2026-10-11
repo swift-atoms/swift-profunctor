@@ -26,7 +26,7 @@ let package = Package(
         .macro(
             name: "Profunctor Macro Plugin",
             dependencies: [
-                "Profunctor Macro Core",
+                .target(name: "Profunctor Macro Core"),
                 .product(name: "SwiftCompilerPlugin", package: "swift-syntax"),
                 .product(name: "SwiftSyntax", package: "swift-syntax"),
                 .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
@@ -34,17 +34,17 @@ let package = Package(
         ),
         .target(
             name: "Profunctor Macro",
-            dependencies: ["Profunctor Macro Plugin"]
+            dependencies: [.target(name: "Profunctor Macro Plugin")]
         ),
         .testTarget(
             name: "Profunctor Macro Tests",
-            dependencies: ["Profunctor Macro"]
+            dependencies: [.target(name: "Profunctor Macro")]
         ),
     ],
     swiftLanguageModes: [.v6]
 )
 
-for target in package.targets where ![.system, .binary, .plugin].contains(target.type) {
+for target in package.targets where ![.system, .binary, .plugin, .macro].contains(target.type) {
     target.swiftSettings = (target.swiftSettings ?? []) + [
         .strictMemorySafety(),
         .enableUpcomingFeature("ExistentialAny"),
