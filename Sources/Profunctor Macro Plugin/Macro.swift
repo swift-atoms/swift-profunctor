@@ -1,6 +1,6 @@
+import Profunctor_Macro_Core
 public import SwiftSyntax
 public import SwiftSyntaxMacros
-import Profunctor_Macro_Core
 
 public struct Macro: MemberMacro {}
 
